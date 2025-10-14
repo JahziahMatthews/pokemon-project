@@ -9,25 +9,62 @@
     <script defer src="script.js"></script>
 </head>
 
-<body class="">
+<body class="bg-[#1E1E1E] text-[#E5E5E5]">
+    <div class="bg-whiteh-screen flex items-center justify-center px-10 gap-20">
+        <div class="bg-whiteflex flex-col items-center">
+            <p class="font-bold" id="pokemonInfo">Name: ID: Type:</p>
 
-    <div class="h-screen flex flex-col items-center justify-center">
-        <p class="" 
-        id="pokemonInfo">Name: ID: Type:
-        </p>
+            <img class="w-[25ch]" id="pokemonImage" alt="Pokémon Image">
 
-        <img class="w-[25ch]"
-        id="pokemonImage" alt="Pokémon Image" >
+            <div class="grid gap-1 mt-2">
+                <h3 class="text-center font-bold" id="errorBox"></h3>
+                <input class="font-bold outline-none bg-[#4B5563] border-4 border-[#3F3F3F] text-center" id="pokemonInput"
+                    placeholder="Enter Pokémon name..." required />
+                <button
+                    class="inline-block outline-none border-4 bg-[#4B5563] border-[#3F3F3F] transition duration-300 delay-50 hover:scale-105"
+                    id="searchBtn">
+                    Search
+                </button>
+            </div>
+        </div>
 
-        <div class="grid gap-1">
-            <input class="outline-none border-4 border-gray-600 text-center" 
-            id="pokemonInput" placeholder="Enter Pokémon name..." required>
+        <div class="text-2xl font-bold">
+            <ul class="list-decimal pl-2 text-sm">
+                <li>Bulbasaur</li>
+                <li>Charmander</li>
+                <li>Squirtle</li>
+                <li>Pikachu</li>
+                <li>Jigglypuff</li>
+                <li>Meowth</li>
+                <li>Psyduck</li>
+                <li>Machop</li>
+                <li>Magnemite</li>
+                <li>Onix</li>
+                <li>Eevee</li>
+                <li>Vaporeon</li>
+                <li>Jolteon</li>
+                <li>Flareon</li>
+                <li>Snorlax</li>
+                <li>Dragonite</li>
+                <li>Mewtwo</li>
+                <li>Mew</li>
+                <li>Chikorita</li>
+                <li>Cyndaquil</li>
+                <li>Totodile</li>
+                <li>Togepi</li>
+                <li>Espeon</li>
+                <li>Umbreon</li>
+                <li>Lucario</li>
+                <li>Garchomp</li>
+                <li>Greninja</li>
+                <li>Decidueye</li>
+                <li>Zoroark</li>
+                <li>Dragapult</li>
+            </ul>
 
-            <button class="inline-block outline-none border-4 border-gray-600 transition duration-300 delay-50 
-            hover:scale-105" 
-            id="searchBtn">Search</button>
         </div>
     </div>
 
 </body>
+
 </html>
