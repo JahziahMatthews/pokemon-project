@@ -21,6 +21,8 @@ async function getFetch() {
   if (name === "") {
     errorBox.classList.add("text-[#EF4444]")
     errorBox.textContent = "No Name Entered"
+
+    imgCont.src = ""
     return 
   }
 
