@@ -2,7 +2,7 @@ const nameInput = document.getElementById("pokemonInput");
 const searchBtn = document.getElementById("searchBtn");
 const imgCont = document.getElementById("pokemonImage");
 const infoBox = document.getElementById("pokemonInfo");
-const errorBox = document.getElementById("errorBox")
+const errorBox = document.getElementById("errorBox");
 
 function makeCapital(str) {
   if (str.length === 0) {
@@ -17,13 +17,13 @@ function makeCapital(str) {
 async function getFetch() {
   const name = nameInput.value.trim().toLowerCase();
 
-  errorBox.classList.remove("text-[#EF4444]", "text-emerald-400")
+  errorBox.classList.remove("text-[#EF4444]", "text-emerald-400");
   if (name === "") {
-    errorBox.classList.add("text-[#EF4444]")
-    errorBox.textContent = "No Name Entered"
+    errorBox.classList.add("text-[#EF4444]");
+    errorBox.textContent = "No Name Entered";
 
-    imgCont.src = ""
-    return 
+    imgCont.src = "";
+    return;
   }
 
   try {
@@ -39,31 +39,57 @@ async function getFetch() {
       const types = pkData.types
         .map((t) => makeCapital(JSON.stringify(t.type.name)))
         .join(", ");
-      infoBox.textContent = `Name: ${makeCapital(pkName)}, ID: ${pkData.id}, Type: ${types}`;
+      infoBox.textContent = `Name: ${makeCapital(pkName)}, ID: ${
+        pkData.id
+      }, Type: ${types}`;
     } else {
-      infoBox.textContent = `Name: ${makeCapital(pkName)}, ID: ${pkData.id}, Type: Unknown`;
+      infoBox.textContent = `Name: ${makeCapital(pkName)}, ID: ${
+        pkData.id
+      }, Type: Unknown`;
     }
-    
+
     imgCont.src = pkImgUrl;
 
     // console.log(pkData) // uncommented this out so much just to see the data man 😭✌️
 
-    errorBox.textContent = "Success!"
-    errorBox.classList.add("text-emerald-400")
+    errorBox.textContent = "Success!";
+    errorBox.classList.add("text-emerald-400");
 
     console.log(`Pokemon Found: ${name.toUpperCase()}`);
   } catch (e) {
-    errorBox.classList.add("text-[#EF4444]")
-    errorBox.textContent = e
+    errorBox.classList.add("text-[#EF4444]");
+    errorBox.textContent = e;
 
     console.error("Error fetching Pokémon:", e);
     imgCont.src = "";
   }
 }
 
-searchBtn.addEventListener("click", getFetch);
+let onCooldown = false;
+
+function handleSearch() {
+  if (onCooldown) return;
+
+  getFetch();
+  onCooldown = true;
+
+  searchBtn.disabled = true;
+  searchBtn.classList.add("cursor-not-allowed");
+  searchBtn.classList.remove("hover:scale-105");
+  searchBtn.textContent = "Please wait...";
+
+  setTimeout(() => {
+    onCooldown = false;
+    searchBtn.disabled = false;
+    searchBtn.classList.add("hover:scale-105");
+    searchBtn.classList.remove("cursor-not-allowed");
+    searchBtn.textContent = "Search...";
+  }, 800);
+}
+
+searchBtn.addEventListener("click", handleSearch);
 nameInput.addEventListener("keydown", (i) => {
   if (i.key === "Enter") {
-    getFetch();
+    handleSearch();
   }
 });

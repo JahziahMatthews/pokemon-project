@@ -1,30 +1,36 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pokedex</title>
+    <title>PokeSite</title>
+    <meta name="description" content="Discover and explore all Pokémon with my interactive PokéSite. Search by name, type, and view detailed stats for every Pokémon." />
+
     <script src="https://cdn.tailwindcss.com"></script>
     <script defer src="script.js"></script>
 </head>
 
-<body class="bg-[#1E1E1E] text-[#E5E5E5]">
-    <div class="bg-whiteh-screen flex items-center justify-center px-10 gap-20">
-        <div class="bg-whiteflex flex-col items-center">
-            <p class="font-bold" id="pokemonInfo">Name: ID: Type:</p>
+<body class="bg-[#1E1E1E] text-[#E5E5E5] opacity-0 transition-opacity duration-700 ease-out">
+    <div class="h-screen flex items-center justify-center px-10 gap-20">
+        <div class="flex flex-col items-center ">
+            <p class="font-bold pb-2" id="pokemonInfo">Name: ID: Type:</p>
 
-            <img class="mx-auto w-[25ch]" id="pokemonImage" alt="Pokémon Image">
+            <img class="mx-auto w-[25ch] border-[#3F3F3F] border-4 rounded shadow-black" id="pokemonImage" alt="Pokémon Image">
 
             <div class="grid gap-1 mt-2">
+
                 <h3 class="text-center font-bold" id="errorBox"></h3>
+
                 <input class="font-bold outline-none bg-[#4B5563] border-4 border-[#3F3F3F] text-center" id="pokemonInput"
                     placeholder="Enter Pokémon name..." required />
+
                 <button
-                    class="inline-block outline-none border-4 bg-[#4B5563] border-[#3F3F3F] transition duration-300 delay-50 hover:scale-105"
+                    class="outline-none border-4 bg-[#4B5563] border-[#3F3F3F] transition duration-300 delay-50 hover:scale-105"
                     id="searchBtn">
-                    Search
+                    Search...
                 </button>
+
             </div>
         </div>
 
@@ -64,7 +70,11 @@
 
         </div>
     </div>
-
+    <script>
+        window.addEventListener("load", () => {
+            document.body.classList.remove("opacity-0")
+        })
+    </script>
 </body>
 
 </html>
